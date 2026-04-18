@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bible Battle Blitz</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="global-bar">
+        <span class="logo">Bible Battle Blitz</span>
+        <button type="button" id="music-toggle" class="btn-icon" aria-pressed="true">
+          🔊 Music
+        </button>
+      </header>
+      <main id="scene-root" aria-live="polite"></main>
+      <footer id="admin-bar" class="admin-bar">
+        <span class="admin-label">Teacher</span>
+        <button type="button" data-admin="hp-ap">A +100</button>
+        <button type="button" data-admin="hp-am">A −100</button>
+        <button type="button" data-admin="hp-bp">B +100</button>
+        <button type="button" data-admin="hp-bm">B −100</button>
+        <button type="button" data-admin="skip-q">Skip question</button>
+        <button type="button" data-admin="reset">Reset game</button>
+      </footer>
+    </div>
+    <script>
+      (function () {
+        if (location.protocol === "file:") {
+          var root = document.getElementById("scene-root");
+          root.innerHTML =
+            '<article class="prose" style="max-width:520px">' +
+            "<h2>Open this game over HTTP</h2>" +
+            "<p>Browsers block ES modules when you double‑click <code>index.html</code> " +
+            "(<code>file://</code>). Run a tiny local server, then visit the URL it prints.</p>" +
+            "<p><strong>Easiest (Windows):</strong> double‑click <code>Run-Local-Server.bat</code> in this folder, " +
+            "then open <code>http://localhost:5173</code>.</p>" +
+            "<p><strong>Or with Node:</strong> in this folder run <code>npm start</code>.</p>" +
+            "<p><strong>Or Python:</strong> <code>python -m http.server 5173</code> then open the same URL.</p>" +
+            "</article>";
+          var musicBtn = document.getElementById("music-toggle");
+          if (musicBtn) musicBtn.disabled = true;
+          return;
+        }
+        var script = document.createElement("script");
+        script.type = "module";
+        script.src = "./app.js";
+        document.body.appendChild(script);
+      })();
+    </script>
+  </body>
+</html>

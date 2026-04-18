@@ -1,0 +1,77 @@
+[
+  {"id": "goliath",
+  "name": "Goliath",
+  "hp": 6000,
+  "image": "goliath.png",
+  "skills": [
+    {
+      "name": "Giant",
+      "type": "passive",
+      "description": "When attacking, all of your attacks are treated as Heavy attacks during damage calculation."
+    }
+  ]
+  },
+  {"id": "david",
+  "name": "David",
+  "hp": 4000,
+  "image": "david.png",
+  "skills": [
+    {
+      "name": "Sling & Stone",
+      "type": "active",
+      "description": "At the start of the game, you receive 5 [Stone Counters]. Before attacking, you may choose to discard 1 [Stone Counter]. If you do, increase the damage of your attack by 50%."
+    },
+    {
+      "name": "Divine Protection",
+      "type": "active",
+      "description": "If you did not activate [Divine Protection] last turn, you may skip your attack phase to recover 200 Health."
+    }
+  ]
+  },
+  {"id": "king_saul",
+  "name": "King Saul",
+  "hp": 4500,
+  "image": "king_saul.png",
+  "skills": [
+    {
+      "name": "Lord's Anointed",
+      "type": "passive",
+      "description": "Once per game, you can prevent any single damage taken."
+    },
+    {
+      "name": "Jealousy",
+      "type": "active",
+      "description": "Once per turn, you may lose 500 health and deal 500 damage to your opponent."
+    }
+  ]
+  },
+  {"id": "samson",
+  "name": "Samson",
+  "hp": 5000,
+  "image": "samson.png",
+  "skills": [
+    {
+      "name": "Super Strength",
+      "type": "passive",
+      "description": "At the beginning of the game, you receive 3 [Hair Tokens]. For each [Hair Token] you have, your attacks deal +200 extra damage."
+    },
+    {
+      "name": "Gullible",
+      "type": "passive",
+      "description": "Each time you answer a question wrong (when defending), you lose a [Hair Token]."
+    }
+  ]
+  },
+  {"id": "ehud",
+  "name": "Ehud",
+  "hp": 4500,
+  "image": "ehud.png",
+  "skills": [
+    {
+      "name": "Assassination",
+      "type": "passive",
+      "description": "After a successful Attack, you can roll two dice. If the result is 7, skip your opponent's next turn. If the result is 6 or 8, deal +100 extra damage to the opponent."
+    }
+  ]
+  }
+]

@@ -1,0 +1,428 @@
+[
+  {
+    "id": "q1",
+    "type": "heavy",
+    "question": "Where was Jesus born?",
+    "choices": ["Nazareth", "Bethlehem", "Jerusalem", "Egypt"],
+    "correctIndex": 1
+  },
+  {
+    "id": "q2",
+    "type": "heavy",
+    "question": "Who came to visit Jesus after His birth?",
+    "choices": ["Pharisees", "Shepherds and wise men", "Soldiers", "Roman governors"],
+    "correctIndex": 1
+  },
+  {
+    "id": "q3",
+    "type": "light",
+    "question": "In what city was Jesus dedicated at the temple as a baby?",
+    "choices": ["Nazareth", "Jerusalem", "Capernaum", "Bethlehem"],
+    "correctIndex": 1
+  },
+  {
+    "id": "q4",
+    "type": "light",
+    "question": "Who recognized baby Jesus at the temple during His dedication?",
+    "choices": ["Herod", "Simeon and Anna", "John the Baptist", "Joseph's brothers"],
+    "correctIndex": 1
+  },
+  {
+    "id": "q5",
+    "type": "heavy",
+    "question": "Where was Jesus baptized?",
+    "choices": ["Sea of Galilee", "Jordan River", "Dead Sea", "Nile River"],
+    "correctIndex": 1
+  },
+  {
+    "id": "q6",
+    "type": "heavy",
+    "question": "Who baptized Jesus?",
+    "choices": ["Peter", "Paul", "John the Baptist", "Moses"],
+    "correctIndex": 2
+  },
+  {
+    "id": "q7",
+    "type": "heavy",
+    "question": "What happened at Jesus' baptism?",
+    "choices": ["Jesus baptized his disciples after his own baptism", "Heaven opened and God spoke", "The Temple fell", "Angels celebrated"],
+    "correctIndex": 1
+  },
+  {
+    "id": "q8",
+    "type": "heavy",
+    "question": "What did God say at Jesus' baptism?",
+    "choices": [
+      "This is my servant",
+      "This is my beloved Son",
+      "He will die for the sins of the world",
+      "He is the chosen Messiah"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "id": "q9",
+    "type": "heavy",
+    "question": "What is Easter celebrating in the Bible?",
+    "choices": ["Creation", "Jesus' resurrection", "Baptism", "Jesus' crucifixion"],
+    "correctIndex": 1
+  },
+  {
+    "id": "q10",
+    "type": "heavy",
+    "question": "On what day did Jesus rise from the dead?",
+    "choices": ["First day of the week", "Third day after crucifixion", "Fifth day", "After 40 days"],
+    "correctIndex": 1
+  },
+
+  {
+    "id": "q11",
+    "type": "heavy",
+    "question": "How many days was Jesus tempted?",
+    "choices": ["7", "12", "30", "40"],
+    "correctIndex": 3
+  },
+  {
+    "id": "q12",
+    "type": "light",
+    "question": "Why was Daniel thrown into the lion’s den?",
+    "choices": [
+      "He refused to eat the food that the King commanded",
+      "He refused to stop praying to God",
+      "He worshipped the gold statue of Nebuchadnezzar",
+      "The fiery furnace could not harm him, so the King had to find another way to kill him"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "id": "q13",
+    "type": "light",
+    "question": "Who were Daniel’s three friends?",
+    "choices": ["Peter, James, John", "Shadrach, Meshach, Abednego", "Shechem, Mendel, Abiezer", "Shimei , Michal, Abenezer"],
+    "correctIndex": 1
+  },
+  {
+    "id": "q14",
+    "type": "light",
+    "question": "What happened to Daniel in the lion’s den?",
+    "choices": ["He ate the lions", "Angels helped him escape", "He was unharmed", "He escaped alone"],
+    "correctIndex": 2
+  },
+  {
+    "id": "q15",
+    "type": "light",
+    "question": "Who was the queen that saved her people?",
+    "choices": ["Mary", "Esther", "Ruth", "Deborah"],
+    "correctIndex": 1
+  },
+  {
+    "id": "q16",
+    "type": "light",
+    "question": "What risk did Esther take?",
+    "choices": [
+      "She plotted to kill the king",
+      "She went to the king without being called",
+      "She plotted to kill Haman the Agagite",
+      "She married the king to save her people"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "id": "q17",
+    "type": "light",
+    "question": "Who was Esther’s cousin who raised her?",
+    "choices": ["Mordecai", "Meshach", "Miriam", "Abijah"],
+    "correctIndex": 0
+  },
+  {
+    "id": "q18",
+    "type": "heavy",
+    "question": "What was the king’s reaction when Esther approached him?",
+    "choices": ["He ignored her", "He ran up to hug her", "He held out his scepter", "He was angry"],
+    "correctIndex": 2
+  },
+
+  {
+    "id": "q19",
+    "type": "light",
+    "question": "Who traveled with Mary and Joseph to Bethlehem?",
+    "choices": ["Shepherds", "No one else", "Wise men", "Angels"],
+    "correctIndex": 1
+  },
+  {
+    "id": "q20",
+    "type": "heavy",
+    "question": "Why did Mary and Joseph go to Bethlehem?",
+    "choices": ["To escape a famine", "Roman census", "Trade journey", "Family visit"],
+    "correctIndex": 1
+  },
+
+  {
+    "id": "q21",
+    "type": "heavy",
+    "question": "What did Jesus do at the temple as a young boy?",
+    "choices": ["Cleaned it", "Overturned tables", "Destroyed idols", "None of the Above"],
+    "correctIndex": 3
+  },
+  {
+    "id": "q22",
+    "type": "light",
+    "question": "How old was Jesus when He stayed behind at the temple?",
+    "choices": ["5", "10", "12", "15"],
+    "correctIndex": 2
+  },
+
+  {
+    "id": "q23",
+    "type": "heavy",
+    "question": "Which of these is NOT one of Jesus' original 12 disciples?",
+    "choices": ["Matthew", "Mark", "James", "John"],
+    "correctIndex": 1
+  },
+  {
+    "id": "q24",
+    "type": "light",
+    "question": "Which of these is NOT one of Jesus' original 12 disciples?",
+    "choices": [
+      "Thaddeus",
+      "Luke",
+      "Peter",
+      "Thomas"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "id": "q25",
+    "type": "heavy",
+    "question": "What holiday were Jesus and his disciples observing during the Last Supper?",
+    "choices": ["Christmas", "Feast of First Fruits", "Pentecost", "Passover"],
+    "correctIndex": 3
+  },
+
+  {
+    "id": "q26",
+    "type": "light",
+    "question": "Why did Joseph take Mary and Jesus to Egypt after Jesus was born?",
+    "choices": [
+      "To visit relatives",
+      "To escape King Herod",
+      "To trade goods",
+      "To attend a festival"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "id": "q27",
+    "type": "light",
+    "question": "What prophecy was fulfilled by Jesus being born in Bethlehem?",
+    "choices": [
+      "That He would be a teacher",
+      "That He would be born in Nazareth",
+      "That the Messiah would come from Bethlehem",
+      "That angels would appear"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "id": "q28",
+    "type": "heavy",
+    "question": "What did Simeon say about Jesus when He was brought to the temple?",
+    "choices": [
+      "He will rule Rome",
+      "He is the Savior prepared by God",
+      "He will become king of the Jews and overthrow the Roman empire",
+      "He will rebuild the temple"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "id": "q29",
+    "type": "light",
+    "question": "Why was John the Baptist baptizing people in the Jordan River?",
+    "choices": [
+      "To collect taxes",
+      "To prepare people for Jesus",
+      "To build a kingdom",
+      "To clean the river"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "id": "q30",
+    "type": "light",
+    "question": "What did the Spirit of God look like during Jesus’ baptism?",
+    "choices": [
+      "A lion",
+      "A dove",
+      "A cloud of fire",
+      "A bright star"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "id": "q31",
+    "type": "heavy",
+    "question": "What did the angel tell the women at the tomb?",
+    "choices": [
+      "Jesus is still inside",
+      "He has risen",
+      "Go home quickly",
+      "Do not tell anyone"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "id": "q32",
+    "type": "light",
+    "question": "Why did King Darius sign a decree against prayer in Daniel’s time?",
+    "choices": [
+      "He wanted to collect more taxes",
+      "He was tricked by officials",
+      "He wanted to kill Daniel",
+      "He wanted to build a temple"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "id": "q33",
+    "type": "light",
+    "question": "What did Mordecai tell Esther to do?",
+    "choices": [
+      "Flee the kingdom with her people",
+      "Stay silent to preserve her own life",
+      "Speak to the king to save her people",
+      "Set a trap for Haman the Agagite"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "id": "q34",
+    "type": "heavy",
+    "question": "What made King Herod worried after Jesus was born?",
+    "choices": [
+      "A new prophecy about a king",
+      "A war in Egypt",
+      "The temple collapsing",
+      "A famine"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "id": "q35",
+    "type": "heavy",
+    "question": "What did Jesus do after His baptism before starting His ministry?",
+    "choices": [
+      "Healed the sick",
+      "Went into the wilderness",
+      "Returned to Bethlehem",
+      "Became a king"
+    ],
+    "correctIndex": 1
+  },
+
+  {
+    "id": "q36",
+    "type": "heavy",
+    "question": "Which of the following is a relative of Jesus?",
+    "choices": ["John the Baptist", "Peter", "King Herod", "Judas"],
+    "correctIndex": 0
+  },
+  {
+    "id": "q37",
+    "type": "heavy",
+    "question": "How many Gospel books are there?",
+    "choices": ["2", "3", "4", "66"],
+    "correctIndex": 2
+  },
+  {
+    "id": "q38",
+    "type": "heavy",
+    "question": "How many books are in the Old Testament?",
+    "choices": ["27", "29", "37", "39"],
+    "correctIndex": 3
+  },
+  {
+    "id": "q39",
+    "type": "heavy",
+    "question": "What did King Nebuchadnezzar do with healthy, handsome, and intelligent young men in Judah?",
+    "choices": ["Killed them all", "Brought them to Babylon to serve him", "Gave them authority to rule Judah in his place", "Forced them to marry his daughters"],
+    "correctIndex": 1
+  },
+  {
+    "id": "q40",
+    "type": "heavy",
+    "question": "Who announced Jesus’ birth to shepherds?",
+    "choices": ["Angels", "Kings", "Prophets", "Soldiers"],
+    "correctIndex": 0
+  },
+  {
+    "id": "q41",
+    "type": "heavy",
+    "question": "What gift did the wise men bring to Jesus?",
+    "choices": ["Gold, silver, and diamonds", "Gold, frankincense, myrrh", "Camels", "Clothes"],
+    "correctIndex": 1
+  },
+  {
+    "id": "q42",
+    "type": "heavy",
+    "question": "Who was Jesus’ earthly mother?",
+    "choices": ["Martha", "Mary", "Ruth", "Esther"],
+    "correctIndex": 1
+  },
+  {
+    "id": "q43",
+    "type": "light",
+    "question": "Where did Mary and Joseph flee after Jesus was born?",
+    "choices": ["Egypt", "Rome", "Babylon", "Greece"],
+    "correctIndex": 0
+  },
+  {
+    "id": "q44",
+    "type": "heavy",
+    "question": "Who rolled the stone away from Jesus’ tomb?",
+    "choices": ["Angels", "Soldiers", "Disciples", "Mary"],
+    "correctIndex": 0
+  },
+  {
+    "id": "q45",
+    "type": "heavy",
+    "question": "What did Jesus do after rising from the dead?",
+    "choices": ["Stayed in tomb", "Appeared to disciples", "Ascended immediately into Heaven", "Punished the Roman soldiers guarding his tomb"],
+    "correctIndex": 1
+  },
+  {
+    "id": "q46",
+    "type": "heavy",
+    "question": "Who was thrown into a fiery furnace?",
+    "choices": ["Shadrach, Meshach, Abednego", "Daniel", "Moses", "Elijah"],
+    "correctIndex": 0
+  },
+  {
+    "id": "q47",
+    "type": "heavy",
+    "question": "What happened in the fiery furnace?",
+    "choices": ["They burned instantly", "They were unharmed", "An angel freed them from the ropes and they fled", "An angel put out the fire"],
+    "correctIndex": 1
+  },
+  {
+    "id": "q48",
+    "type": "light",
+    "question": "Which of these is a book in the Old Testament?",
+    "choices": ["1 Corinthians", "Titus", "Ecclesiastes", "Philemon"],
+    "correctIndex": 2
+  },
+  {
+    "id": "q49",
+    "type": "light",
+    "question": "Which of these is a book in the New Testament?",
+    "choices": ["Amos", "Obadiah", "Jude", "Joshua"],
+    "correctIndex": 2
+  },
+  {
+    "id": "q50",
+    "type": "light",
+    "question": "Which of these is a book in the New Testament?",
+    "choices": ["James", "Jeremiah", "Joshua", "Judges"],
+    "correctIndex": 0
+  }
+]
