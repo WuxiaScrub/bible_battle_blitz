@@ -754,9 +754,6 @@ function tauntCenter(atk, def) {
         ${dieMarkup}
       </div>
       <p>${escapeHtml(resultText)}</p>
-      <div class="row-actions">
-        <button type="button" class="btn btn-primary" data-taunt-end-turn>End Turn</button>
-      </div>
     </div>
   `;
 }
@@ -867,22 +864,13 @@ async function wireBattleUi(root, atk, def, phase) {
         { type: "SFX_HIT" },
       ];
       await dispatchResult({ patch: {}, effects });
-    };
-  }
-
-  const tauntEndTurn = root.querySelector("[data-taunt-end-turn]");
-  if (tauntEndTurn) {
-    tauntEndTurn.onclick = async () => {
       await dispatchResult({
         patch: {
           battlePhase: "choose_attack",
           tauntRoll: null,
         },
         effects: [],
-        advanceTurn: false,
       });
-    };
-  }
 
   root.querySelectorAll("[data-atk]").forEach((btn) => {
     btn.onclick = async () => {
