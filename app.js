@@ -167,16 +167,30 @@ function computeNextTurn(s) {
 
 function applySaulJealousyReset(s, newTurn) {
   const t = s.teams[newTurn];
-  if (!t?.character || t.character.id !== "king_saul") return {};
-  return {
-    teams: {
-      ...s.teams,
-      [newTurn]: {
-        ...t,
-        runtime: { ...t.runtime, jealousyUsedThisTurn: false },
+  if (!t?.character) return {};
+  if (t.character.id === "king_saul") {
+    return {
+      teams: {
+        ...s.teams,
+        [newTurn]: {
+          ...t,
+          runtime: { ...t.runtime, jealousyUsedThisTurn: false },
+        },
       },
-    },
-  };
+    };
+  }
+  if (t.character.id === "goliath") {
+    return {
+      teams: {
+        ...s.teams,
+        [newTurn]: {
+          ...t,
+          runtime: { ...t.runtime, tauntUsedThisTurn: false },
+        },
+      },
+    };
+  }
+  return {};
 }
 
 /* ---- Scene: MAIN_MENU ---- */
@@ -552,6 +566,10 @@ function renderBattle(root, ctx) {
       isCurrentTeam && t.character?.id === "king_saul" && !t.runtime.jealousyUsedThisTurn
         ? `<button type="button" class="btn btn-skill" data-jealousy>Jealousy — lose 500 HP, deal 500 damage</button>`
         : "";
+    const goliathTaunt =
+      isCurrentTeam && t.character?.id === "goliath" && !t.runtime.tauntUsedThisTurn
+        ? `<button type="button" class="btn btn-skill" data-taunt>Taunt — roll 1 die; 4+ deals 300 to opponent, otherwise you take 300</button>`
+        : "";
 
     const turnPointer = teamId === state.currentTurn && c
       ? `<div class="turn-pointer" aria-hidden="true"></div>`
@@ -593,6 +611,7 @@ function renderBattle(root, ctx) {
           <div style="margin-top: 0.5rem; display:flex; flex-direction:column; gap:0.25rem;">
             ${endTurnButton}
             ${saulJ}
+            ${goliathTaunt}
           </div>
           <div class="skill-row" data-active-wrap="${teamId}"></div>
           <ul class="skill-list" style="margin-top:.5rem;">${skills}</ul>
@@ -731,6 +750,14 @@ async function wireBattleUi(root, atk, def, phase) {
   if (jealousy) {
     jealousy.onclick = async () => {
       const res = applyJealousy(state, atk);
+      await dispatchResult(res);
+    };
+  }
+
+  const taunt = root.querySelector("[data-taunt]");
+  if (taunt) {
+    taunt.onclick = async () => {
+      const res = applyTaunt(state, atk);
       await dispatchResult(res);
     };
   }

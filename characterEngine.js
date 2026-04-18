@@ -57,6 +57,7 @@ export function buildRuntimeForCharacter(character) {
     hairTokens: 0,
     anointedAvailable: false,
     jealousyUsedThisTurn: false,
+    tauntUsedThisTurn: false,
     ehudBonusRoll: null,
   };
 

@@ -5,9 +5,9 @@
   "image": "goliath.png",
   "skills": [
     {
-      "name": "Giant",
-      "type": "passive",
-      "description": "When attacking, all of your attacks are treated as Heavy attacks during damage calculation."
+      "name": "Taunt",
+      "type": "active",
+      "description": "Once per turn, you can roll a single die. If the result is 4 or greater, the opponent takes 300 damage. Otherwise, you take 300 damage."
     }
   ]
   },

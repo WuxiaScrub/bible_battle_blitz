@@ -297,6 +297,58 @@ export function applyJealousy(state, teamId) {
   };
 }
 
+export function applyTaunt(state, teamId) {
+  const self = state.teams[teamId];
+  const opp = state.teams[otherTeam(teamId)];
+  if (self.character?.id !== "goliath") return null;
+  if (self.runtime.tauntUsedThisTurn) return null;
+
+  const roll = 1 + Math.floor(Math.random() * 6);
+  const isSuccess = roll >= 4;
+  const damage = 300;
+  const target = isSuccess ? opp : self;
+  const targetTeam = isSuccess ? otherTeam(teamId) : teamId;
+  const targetHp = Math.max(0, target.hp - damage);
+  const winner =
+    targetHp <= 0 ? targetTeam : null;
+
+  const effects = [
+    { type: "HIT", team: targetTeam },
+    { type: "DAMAGE_TEXT", team: targetTeam, amount: damage },
+    { type: "SFX_HIT" },
+  ];
+
+  const teams = {
+    ...state.teams,
+    [teamId]: {
+      ...self,
+      runtime: { ...self.runtime, tauntUsedThisTurn: true },
+    },
+  };
+  if (targetTeam === teamId) {
+    teams[teamId] = {
+      ...teams[teamId],
+      hp: targetHp,
+    };
+  } else {
+    teams[targetTeam] = {
+      ...target,
+      hp: targetHp,
+    };
+  }
+
+  return {
+    patch: {
+      teams,
+      winner,
+      ehudPending: null,
+      ehudRoll: null,
+    },
+    effects,
+    advanceTurn: false,
+  };
+}
+
 export function applyDivineProtection(state, teamId) {
   const self = state.teams[teamId];
   if (self.character?.id !== "david") return null;
