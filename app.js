@@ -863,7 +863,20 @@ async function wireBattleUi(root, atk, def, phase) {
         { type: "DAMAGE_TEXT", team: targetTeam, amount: damage },
         { type: "SFX_HIT" },
       ];
-      await dispatchResult({ patch: {}, effects });
+      const patch = {
+        teams: {
+          ...state.teams,
+          [targetTeam]: {
+            ...state.teams[targetTeam],
+            hp: Math.max(0, state.teams[targetTeam].hp - damage),
+          },
+          [atk]: {
+            ...state.teams[atk],
+            runtime: { ...state.teams[atk].runtime, tauntUsedThisTurn: true },
+          },
+        },
+      };
+      await dispatchResult({ patch, effects });
       await dispatchResult({
         patch: {
           battlePhase: "choose_attack",
