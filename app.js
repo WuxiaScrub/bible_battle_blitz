@@ -871,6 +871,8 @@ async function wireBattleUi(root, atk, def, phase) {
         },
         effects: [],
       });
+    };
+  }
 
   root.querySelectorAll("[data-atk]").forEach((btn) => {
     btn.onclick = async () => {
