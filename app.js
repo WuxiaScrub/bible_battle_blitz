@@ -686,9 +686,11 @@ function ehudRollCenter(atk, def) {
 
   const resultText = roll.sum === 7
     ? `Sum ${roll.sum}: defender will skip their next turn.`
-    : roll.sum === 6 || roll.sum === 8
+    : roll.sum === 5 || roll.sum === 9
       ? `Sum ${roll.sum}: extra 100 damage dealt to the defender.`
-      : `Sum ${roll.sum}: no extra effect this time.`;
+      : roll.sum === 6 || roll.sum === 8
+        ? `Sum ${roll.sum}: extra 200 damage dealt to the defender.`
+        : `Sum ${roll.sum}: no extra effect this time.`;
 
   return `
     <div class="question-panel">
@@ -696,7 +698,7 @@ function ehudRollCenter(atk, def) {
       ${diceMarkup}
       <p>${escapeHtml(resultText)}</p>
       <div class="row-actions">
-        <button type="button" class="btn btn-primary" data-end-turn>End Turn</button>
+        <button type="button" class="btn btn-primary" data-ehud-end-turn>End Turn</button>
       </div>
     </div>
   `;
@@ -741,9 +743,9 @@ async function wireBattleUi(root, atk, def, phase) {
     };
   }
 
-  const endTurnButton = root.querySelector("[data-end-turn]");
-  if (endTurnButton) {
-    endTurnButton.onclick = async () => {
+  const endTurnButtons = root.querySelectorAll("[data-end-turn]");
+  endTurnButtons.forEach((btn) => {
+    btn.onclick = async () => {
       await dispatchResult({
         patch: {
           battlePhase: "idle",
@@ -753,6 +755,38 @@ async function wireBattleUi(root, atk, def, phase) {
           pendingBlock: null,
         },
         effects: [],
+        advanceTurn: true,
+      });
+    };
+  });
+
+  const ehudEndTurn = root.querySelector("[data-ehud-end-turn]");
+  if (ehudEndTurn) {
+    ehudEndTurn.onclick = async () => {
+      const effects = [];
+      if (state.ehudRoll) {
+        const sum = state.ehudRoll.sum;
+        let extraDamage = 0;
+        if (sum === 5 || sum === 9) extraDamage = 100;
+        else if (sum === 6 || sum === 8) extraDamage = 200;
+        if (extraDamage > 0) {
+          const defender = otherTeam(state.currentTurn);
+          effects.push({ type: "HIT", team: defender });
+          effects.push({ type: "DAMAGE_TEXT", team: defender, amount: extraDamage });
+          effects.push({ type: "SFX_HIT" });
+        }
+      }
+      await dispatchResult({
+        patch: {
+          battlePhase: "idle",
+          currentQuestion: null,
+          selectedAttackType: null,
+          pendingStone: false,
+          pendingBlock: null,
+          ehudPending: null,
+          ehudRoll: null,
+        },
+        effects,
         advanceTurn: true,
       });
     };
@@ -842,32 +876,37 @@ async function wireBattleUi(root, atk, def, phase) {
       if (!pb) return;
       const defender = pb.defender;
       const attacker = pb.attacker;
-      let patch = {
-        ehudPending: null,
-        ehudRoll: { d1, d2, sum },
-        battlePhase: "ehud_roll",
-      };
-      const effects = [
-        { type: "EHUD_ROLL", team: attacker, d1, d2, sum },
-        { type: "SFX_DICE" },
-      ];
+      await dispatchResult({
+        patch: {
+          ehudPending: null,
+          ehudRoll: { d1, d2, sum },
+          battlePhase: "ehud_roll",
+        },
+        effects: [
+          { type: "EHUD_ROLL", team: attacker, d1, d2, sum },
+          { type: "SFX_DICE" },
+        ],
+      });
+      await new Promise(r => setTimeout(r, 200));
+      let effectPatch = {};
+      const effectEffects = [];
       if (sum === 7) {
-        patch.skipNextFor = defender;
-      } else if (sum === 6 || sum === 8) {
-        const bonus = 100;
-        const defState = state.teams[defender];
-        patch.teams = {
-          ...state.teams,
-          [defender]: {
-            ...defState,
-            hp: Math.max(0, defState.hp - bonus),
-          },
-        };
-        effects.push({ type: "HIT", team: defender });
-        effects.push({ type: "DAMAGE_TEXT", team: defender, amount: bonus });
-        effects.push({ type: "SFX_HIT" });
+        effectPatch.skipNextFor = defender;
+      } else {
+        let extraDamage = 0;
+        if (sum === 5 || sum === 9) extraDamage = 100;
+        else if (sum === 6 || sum === 8) extraDamage = 200;
+        if (extraDamage > 0) {
+          effectEffects.push(
+            { type: "HIT", team: defender },
+            { type: "DAMAGE_TEXT", team: defender, amount: extraDamage },
+            { type: "SFX_HIT" }
+          );
+        }
       }
-      await dispatchResult({ patch, effects, advanceTurn: false });
+      if (Object.keys(effectPatch).length || effectEffects.length) {
+        await dispatchResult({ patch: effectPatch, effects: effectEffects });
+      }
     };
   }
 }

@@ -70,7 +70,7 @@
     {
       "name": "Assassination",
       "type": "passive",
-      "description": "After a successful Attack, you can roll two dice. If the result is 7, skip your opponent's next turn. If the result is 6 or 8, deal +100 extra damage to the opponent."
+      "description": "After a successful Attack, you can roll two dice. If the result is 7, skip your opponent's next turn. If the result is 6 or 8, deal +200 extra damage to the opponent. If result is 5 or 9, deal +100 extra damage to the opponent."
     }
   ]
   }
