@@ -146,6 +146,7 @@ function advanceTurnPipeline() {
     turnActionTaken: false,
     ehudPending: null,
     ehudRoll: null,
+    tauntRoll: null,
     pendingStoneToggle: false,
   });
   scenes.refresh(buildCtx());
@@ -633,6 +634,7 @@ function renderBattle(root, ctx) {
         ${phase === "question" ? questionCenter(atk, def) : ""}
         ${phase === "confirm_block" ? blockCenter(def) : ""}
         ${phase === "ehud_roll" ? ehudRollCenter(atk, def) : ""}
+        ${phase === "taunt_roll" ? tauntCenter(atk, def) : ""}
       </div>
       ${teamPanel("B")}
     </div>
@@ -724,6 +726,41 @@ function ehudRollCenter(atk, def) {
   `;
 }
 
+function tauntCenter(atk, def) {
+  const roll = state.tauntRoll;
+  if (!roll) {
+    return `
+      <div class="question-panel">
+        <div class="hint">Goliath's Taunt</div>
+        <div class="ehud-dice-row">
+          <div class="die die--pending"><span class="die-placeholder">?</span></div>
+        </div>
+        <div class="row-actions">
+          <button type="button" class="btn btn-primary" data-taunt-roll>Roll Taunt Die</button>
+        </div>
+      </div>
+    `;
+  }
+
+  const dieMarkup = dieFaceMarkup(roll.value);
+  const resultText = roll.value >= 4
+    ? `Roll ${roll.value}: opponent takes 300 damage.`
+    : `Roll ${roll.value}: you take 300 damage.`;
+
+  return `
+    <div class="question-panel">
+      <div class="hint">Taunt result</div>
+      <div class="ehud-dice-row">
+        ${dieMarkup}
+      </div>
+      <p>${escapeHtml(resultText)}</p>
+      <div class="row-actions">
+        <button type="button" class="btn btn-primary" data-taunt-end-turn>End Turn</button>
+      </div>
+    </div>
+  `;
+}
+
 function blockCenter(defender) {
   const pb = state.pendingBlock;
   if (!pb) return "";
@@ -803,6 +840,46 @@ async function wireBattleUi(root, atk, def, phase) {
         },
         effects: [],
         advanceTurn: true,
+      });
+    };
+  }
+
+  const tauntRollBtn = root.querySelector("[data-taunt-roll]");
+  if (tauntRollBtn) {
+    tauntRollBtn.onclick = async () => {
+      const roll = rollDie();
+      await dispatchResult({
+        patch: {
+          tauntRoll: { value: roll },
+        },
+        effects: [
+          { type: "TAUNT_ROLL", team: atk, value: roll },
+          { type: "SFX_DICE" },
+        ],
+      });
+      await new Promise(r => setTimeout(r, 200));
+      const isSuccess = roll >= 4;
+      const damage = 300;
+      const targetTeam = isSuccess ? def : atk;
+      const effects = [
+        { type: "HIT", team: targetTeam },
+        { type: "DAMAGE_TEXT", team: targetTeam, amount: damage },
+        { type: "SFX_HIT" },
+      ];
+      await dispatchResult({ patch: {}, effects });
+    };
+  }
+
+  const tauntEndTurn = root.querySelector("[data-taunt-end-turn]");
+  if (tauntEndTurn) {
+    tauntEndTurn.onclick = async () => {
+      await dispatchResult({
+        patch: {
+          battlePhase: "choose_attack",
+          tauntRoll: null,
+        },
+        effects: [],
+        advanceTurn: false,
       });
     };
   }

@@ -41,6 +41,7 @@ export function createInitialState() {
     turnActionTaken: false,
     ehudPending: null,
     ehudRoll: null,
+    tauntRoll: null,
     diceGeneration: 0,
   };
 }
