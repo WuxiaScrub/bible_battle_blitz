@@ -7,7 +7,12 @@
     {
       "name": "Taunt",
       "type": "active",
-      "description": "Once per turn, you can roll a single die. If the result is 4 or greater, the opponent takes 300 damage. Otherwise, you take 300 damage."
+      "description": "Once per turn, you can roll a single die. If the result is 3 or greater, the opponent takes 300 damage. Otherwise, you take 300 damage."
+    },
+    {
+      "name": "Giant",
+      "type": "passive",
+      "description": "You can only perform Heavy attacks."
     }
   ]
   },

@@ -570,7 +570,7 @@ function renderBattle(root, ctx) {
         : "";
     const goliathTaunt =
       isCurrentTeam && t.character?.id === "goliath" && !t.runtime.tauntUsedThisTurn
-        ? `<button type="button" class="btn btn-skill" data-taunt>Taunt — roll 1 die; 4+ deals 300 to opponent, otherwise you take 300</button>`
+        ? `<button type="button" class="btn btn-skill" data-taunt>Taunt — roll 1 die; 3+ deals 300 to opponent, otherwise you take 300</button>`
         : "";
 
     const turnPointer = teamId === state.currentTurn && c
@@ -579,10 +579,13 @@ function renderBattle(root, ctx) {
     const hpClass = pct <= 30 ? "low" : pct <= 60 ? "medium" : "high";
     const ehudRollPending = phase === "ehud_roll" && !state.ehudRoll;
 
+    const isGoliathAttacker = showActionControls && t.character?.id === "goliath";
     const attackButtons = showActionControls
       ? `<div class="attack-buttons-stack">
            ${davidStone}
-           <button type="button" class="btn btn-attack btn-light" data-atk="light">Light (${300})</button>
+           ${isGoliathAttacker
+             ? `<button type="button" class="btn btn-attack btn-light" disabled title="Goliath can only use Heavy">Light (${300})</button>`
+             : `<button type="button" class="btn btn-attack btn-light" data-atk="light">Light (${300})</button>`}
            <button type="button" class="btn btn-attack btn-heavy" data-atk="heavy">Heavy (${600})</button>
            ${davidDiv}
          </div>`
@@ -743,7 +746,7 @@ function tauntCenter(atk, def) {
   }
 
   const dieMarkup = dieFaceMarkup(roll.value);
-  const resultText = roll.value >= 4
+  const resultText = roll.value >= 3
     ? `Roll ${roll.value}: opponent takes 300 damage.`
     : `Roll ${roll.value}: you take 300 damage.`;
 
@@ -855,7 +858,7 @@ async function wireBattleUi(root, atk, def, phase) {
         ],
       });
       await new Promise(r => setTimeout(r, 200));
-      const isSuccess = roll >= 4;
+      const isSuccess = roll >= 3;
       const damage = 300;
       const targetTeam = isSuccess ? def : atk;
       const effects = [
