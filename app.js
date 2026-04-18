@@ -864,17 +864,26 @@ async function wireBattleUi(root, atk, def, phase) {
         { type: "SFX_HIT" },
       ];
       const patch = {
-        teams: {
-          ...state.teams,
-          [targetTeam]: {
-            ...state.teams[targetTeam],
-            hp: Math.max(0, state.teams[targetTeam].hp - damage),
-          },
-          [atk]: {
-            ...state.teams[atk],
-            runtime: { ...state.teams[atk].runtime, tauntUsedThisTurn: true },
-          },
-        },
+        teams: (() => {
+          const teams = { ...state.teams };
+          if (targetTeam === atk) {
+            teams[atk] = {
+              ...teams[atk],
+              hp: Math.max(0, teams[atk].hp - damage),
+              runtime: { ...teams[atk].runtime, tauntUsedThisTurn: true },
+            };
+          } else {
+            teams[targetTeam] = {
+              ...teams[targetTeam],
+              hp: Math.max(0, teams[targetTeam].hp - damage),
+            };
+            teams[atk] = {
+              ...teams[atk],
+              runtime: { ...teams[atk].runtime, tauntUsedThisTurn: true },
+            };
+          }
+          return teams;
+        })(),
       };
       await dispatchResult({ patch, effects });
       await dispatchResult({
