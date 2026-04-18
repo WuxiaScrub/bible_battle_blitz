@@ -16,6 +16,7 @@ import {
   confirmAnointedDecline,
   confirmAnointedUse,
   applyJealousy,
+  applyTaunt,
   applyDivineProtection,
 } from "./gameEngine.js";
 
