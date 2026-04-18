@@ -763,19 +763,6 @@ async function wireBattleUi(root, atk, def, phase) {
   const ehudEndTurn = root.querySelector("[data-ehud-end-turn]");
   if (ehudEndTurn) {
     ehudEndTurn.onclick = async () => {
-      const effects = [];
-      if (state.ehudRoll) {
-        const sum = state.ehudRoll.sum;
-        let extraDamage = 0;
-        if (sum === 5 || sum === 9) extraDamage = 100;
-        else if (sum === 6 || sum === 8) extraDamage = 200;
-        if (extraDamage > 0) {
-          const defender = otherTeam(state.currentTurn);
-          effects.push({ type: "HIT", team: defender });
-          effects.push({ type: "DAMAGE_TEXT", team: defender, amount: extraDamage });
-          effects.push({ type: "SFX_HIT" });
-        }
-      }
       await dispatchResult({
         patch: {
           battlePhase: "idle",
@@ -786,7 +773,7 @@ async function wireBattleUi(root, atk, def, phase) {
           ehudPending: null,
           ehudRoll: null,
         },
-        effects,
+        effects: [],
         advanceTurn: true,
       });
     };
