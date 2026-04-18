@@ -62,6 +62,13 @@ export function buildDamagePackage({
   if (wasCorrect) {
     effects.push({ type: "SHIELD", team: defender });
     effects.push({ type: "SFX_SHIELD" });
+    const atkRuntime = { ...atk.runtime };
+    if (atk.character?.id === "david" && usedStone && atkRuntime.stoneCounters > 0) {
+      atkRuntime.stoneCounters -= 1;
+    }
+    if (atk.character?.id === "david") {
+      atkRuntime.divineStance = "ready";
+    }
     return {
       patch: {
         battlePhase: "idle",
@@ -74,6 +81,10 @@ export function buildDamagePackage({
         ehudRoll: null,
         teams: {
           ...state.teams,
+          [attacker]: {
+            ...atk,
+            runtime: atkRuntime,
+          },
           [defender]: {
             ...def,
             runtime: applySamsonWrongDefense(def, false),
