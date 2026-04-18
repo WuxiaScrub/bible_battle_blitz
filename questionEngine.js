@@ -15,6 +15,26 @@ export async function loadAllQuestions() {
  * @param {string[]} usedIds
  * @param {() => number} [rng] 0..1
  */
+function shuffleArray(array, rng) {
+  const result = [...array];
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
+
+export function shuffleChoices(question, rng = Math.random) {
+  const choices = shuffleArray(question.choices, rng);
+  const correctAnswer = question.choices[question.correctIndex];
+  const correctIndex = choices.findIndex((choice) => choice === correctAnswer);
+  return {
+    ...question,
+    choices,
+    correctIndex,
+  };
+}
+
 export async function nextQuestion(attackType, usedIds, rng = Math.random) {
   const all = await loadAllQuestions();
   const pool = all.filter(
@@ -25,7 +45,7 @@ export async function nextQuestion(attackType, usedIds, rng = Math.random) {
     if (any.length === 0) {
       return { error: "no_questions" };
     }
-    return { question: any[Math.floor(rng() * any.length)] };
+    return { question: shuffleChoices(any[Math.floor(rng() * any.length)], rng) };
   }
-  return { question: pool[Math.floor(rng() * pool.length)] };
+  return { question: shuffleChoices(pool[Math.floor(rng() * pool.length)], rng) };
 }
